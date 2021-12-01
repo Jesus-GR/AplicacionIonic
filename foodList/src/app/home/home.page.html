@@ -1,20 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="ion-text-center">
+      Food-List
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+        <ion-list class="ion-text-center">
+          <ion-card (click)="cambiarEsDesplegado()" style="width: 200px; margin-left: 20px;">
+            <ion-label>Alimentos</ion-label>
+            <ion-card style="width: 100%;" *ngIf="esDesplegado == true">
+              <ion-item *ngFor="let a of alimentos" (click)="presentAlertConfirm(a)">
+                <ion-thumbnail>
+                  <img [src]="a.imagen" />
+                </ion-thumbnail>
+                <ion-label style="margin-left: 10px;" class="ion-text-center">{{a.nombre.toLocaleUpperCase()}}</ion-label>
+              </ion-item>
+            </ion-card>
+          </ion-card>
+        </ion-list>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+        
+
 </ion-content>
