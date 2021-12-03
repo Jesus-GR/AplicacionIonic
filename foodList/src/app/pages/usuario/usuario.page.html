@@ -22,12 +22,16 @@
         <ion-label>Favorites</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="exit" style="background-color: rgb(0, 225, 255);">
+      <ion-tab-button tab="exit" style="background-color: rgb(0, 225, 255);"(click)="goToRegister()">
         <ion-icon name="exit-outline" color="dark"></ion-icon>
         <ion-label>Exit</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
+    <div id="contenedor">
+      <h2> Bienvenido {{usuarios}}</h2>
+    </div>
 
 
 </ion-content>

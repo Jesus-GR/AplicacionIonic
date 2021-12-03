@@ -1,7 +1,8 @@
 export interface Usuario {
-    nombre:string
-    edad:string
-    peso:number
-    altura:number
-    imc:number
+    id?:number
+    nombre?:string
+    edad?:string
+    peso?:number
+    altura?:number
+    imc?:number
 }

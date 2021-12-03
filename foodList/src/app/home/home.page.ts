@@ -69,6 +69,9 @@ console.log('Confirm Cancel: blah');
   goToUser(){
     this.router.navigateByUrl("/usuario")
   }
+  goToRegister(){
+    this.router.navigateByUrl("/registro")
+  }
 
 
 }

@@ -42,6 +42,7 @@ console.log('Confirm Cancel: blah');
           text: 'Okay',
           handler: () => {
             this.deleteFavorites(f.id)
+            this.ngOnInit()
           }
 } ]
 });
@@ -59,6 +60,9 @@ console.log('Confirm Cancel: blah');
   }
   goHome(){
     this.router.navigateByUrl("/home")
+  }
+  goToRegister(){
+    this.router.navigateByUrl("/registro")
   }
 
   async presentAlertConfirm(a:Food) {
