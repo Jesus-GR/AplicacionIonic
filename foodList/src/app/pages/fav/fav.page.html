@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" style="background-color: rgb(0, 225, 255);"(click)="goHome()">
+        <ion-icon name="home-outline" color="dark"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="user" style="background-color: rgb(0, 225, 255);"(click)="goToUser()">
+        <ion-icon name="person-outline" color="dark"></ion-icon>
+        <ion-label color="dark">User</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="fav" style="background-color: rgb(0, 225, 255);" (click)="goToFav()">
+        <ion-icon name="star-outline" color="dark"></ion-icon>
+        <ion-label>Favorites</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="exit" style="background-color: rgb(0, 225, 255);">
+        <ion-icon name="exit-outline" color="dark"></ion-icon>
+        <ion-label>Exit</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-list class="ion-text-center">
+    <ion-card  style="width: 90%;">
+      <ion-label (click)="cambiarEsDesplegado()" style="font-weight: bolder; font-size: 2em;">Favoritos</ion-label>
+      <ion-card style="width: 100%;" *ngIf="esDesplegado == true">
+        <ion-item *ngFor="let f of favoritos" >
+          <ion-button (click)="deleteFood(f.id)" slot="end" color="medium">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+          <ion-thumbnail>
+            <img [src]="f.imagen" />
+          </ion-thumbnail>
+          <ion-label (click)="presentAlertConfirm(f)" style="margin-left: 10px;" class="ion-text-center">{{f.nombre.toLocaleUpperCase()}}</ion-label>
+        </ion-item>
+      </ion-card>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

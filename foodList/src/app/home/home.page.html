@@ -7,20 +7,47 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" style="background-color: rgb(0, 225, 255);">
+        <ion-icon name="home-outline" color="dark"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="user" style="background-color: rgb(0, 225, 255);"(click)="goToUser()">
+        <ion-icon name="person-outline" color="dark"></ion-icon>
+        <ion-label color="dark">User</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="fav" style="background-color: rgb(0, 225, 255);" (click)="goToFav()">
+        <ion-icon name="star-outline" color="dark"></ion-icon>
+        <ion-label>Favorites</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="exit" style="background-color: rgb(0, 225, 255);">
+        <ion-icon name="exit-outline" color="dark"></ion-icon>
+        <ion-label>Exit</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+
         <ion-list class="ion-text-center">
-          <ion-card (click)="cambiarEsDesplegado()" style="width: 200px; margin-left: 20px;">
-            <ion-label>Alimentos</ion-label>
+          <ion-card  style="width: 90%;">
+            <ion-label (click)="cambiarEsDesplegado()" style="font-weight: bolder; font-size: 2em;">Alimentos</ion-label>
             <ion-card style="width: 100%;" *ngIf="esDesplegado == true">
-              <ion-item *ngFor="let a of alimentos" (click)="presentAlertConfirm(a)">
+              <ion-item *ngFor="let a of alimentos">
+                <ion-button slot="end" (click)="guardarFavorito(a)" color="medium">
+                   <ion-icon slot="end" name="star-outline" style="margin: auto;"></ion-icon>
+                </ion-button>
+               
                 <ion-thumbnail>
-                  <img [src]="a.imagen" />
+                  <img [src]="a.imagen"/>
                 </ion-thumbnail>
-                <ion-label style="margin-left: 10px;" class="ion-text-center">{{a.nombre.toLocaleUpperCase()}}</ion-label>
+                <ion-label (click)="presentAlertConfirm(a)"  style="margin-left: 10px;" class="ion-text-center">{{a.nombre.toLocaleUpperCase()}}</ion-label>
               </ion-item>
             </ion-card>
           </ion-card>
         </ion-list>
-
-        
-
 </ion-content>

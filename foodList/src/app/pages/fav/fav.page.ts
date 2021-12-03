@@ -1,33 +1,24 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Food } from 'src/app/model/food';
+import { FoodService } from 'src/app/services/food.service';
 import { AlertController } from '@ionic/angular';
-import { Food } from '../model/food';
-import { FoodService } from '../services/food.service';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-fav',
+  templateUrl: './fav.page.html',
+  styleUrls: ['./fav.page.scss'],
 })
-export class HomePage implements OnInit{
-alimentos:Food[] = []
-alimento:Food = {
-    id:null
-}
-
+export class FavPage implements OnInit {
+favoritos:Food[] =[]
 esDesplegado:boolean = false
+  constructor(private foodService:FoodService,
+    public router:Router,
+    private alertController:AlertController) { }
 
-constructor(private foodService:FoodService,
-  public alertController:AlertController,
-  public router:Router){}
-
-  ngOnInit(): void {
-    this.foodService.getFoods().subscribe(data => this.alimentos = data)
-  }
-
-  getAlimento(id:number){
-    this.alimento = this.alimentos.filter(data => data.id == id)[0]
+  ngOnInit() {
+    this.foodService.getFavorites().subscribe(data => this.favoritos = data)
   }
 
   cambiarEsDesplegado(){
@@ -37,6 +28,23 @@ constructor(private foodService:FoodService,
       this.esDesplegado= false
     }
   }
+
+
+  deleteFood(id:number){
+    this.foodService.deleteFood(id)
+  }
+
+
+  goToFav(){
+    this.router.navigateByUrl("/fav")
+  }
+  goToUser(){
+    this.router.navigateByUrl("/usuario")
+  }
+  goHome(){
+    this.router.navigateByUrl("/home")
+  }
+
   async presentAlertConfirm(a:Food) {
     const alert = await this.alertController.create({
       header: `Nombre: ${a.nombre.toLocaleUpperCase()}`,
@@ -54,21 +62,8 @@ buttons: [ {
           text: 'Volver',
           handler: (blah) => {
 console.log('Confirm Cancel: blah');
-} } ]
+} }]
 });
     await alert.present();
   }
-
-  guardarFavorito(fav:Food){
-    this.foodService.saveFav(fav)
-  }
-
-  goToFav(){
-    this.router.navigateByUrl("/fav")
-  }
-  goToUser(){
-    this.router.navigateByUrl("/usuario")
-  }
-
-
 }
