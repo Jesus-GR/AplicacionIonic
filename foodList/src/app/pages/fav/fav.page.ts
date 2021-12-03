@@ -15,7 +15,7 @@ favoritos:Food[] =[]
 esDesplegado:boolean = false
   constructor(private foodService:FoodService,
     public router:Router,
-    private alertController:AlertController) { }
+    private alertController:AlertController) {}
 
   ngOnInit() {
     this.foodService.getFavorites().subscribe(data => this.favoritos = data)
@@ -28,13 +28,29 @@ esDesplegado:boolean = false
       this.esDesplegado= false
     }
   }
-
-
-  deleteFood(id:number){
-    this.foodService.deleteFood(id)
+  async presentAlertConfirma(f:Food) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar favorito',
+      message: `¿Estás seguro que deseas borrar <strong>${f.nombre}</
+strong> de la lista de favoritos?`,
+buttons: [ {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: (blah) => {
+console.log('Confirm Cancel: blah');
+} }, {
+          text: 'Okay',
+          handler: () => {
+            this.deleteFavorites(f.id)
+          }
+} ]
+});
+    await alert.present();
   }
 
-
+  deleteFavorites(id:number){
+    this.foodService.deleteFavorites(id)
+  }
   goToFav(){
     this.router.navigateByUrl("/fav")
   }

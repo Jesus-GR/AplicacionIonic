@@ -34,7 +34,7 @@
       <ion-label (click)="cambiarEsDesplegado()" style="font-weight: bolder; font-size: 2em;">Favoritos</ion-label>
       <ion-card style="width: 100%;" *ngIf="esDesplegado == true">
         <ion-item *ngFor="let f of favoritos" >
-          <ion-button (click)="deleteFood(f.id)" slot="end" color="medium">
+          <ion-button (click)="presentAlertConfirma(f)" slot="end" color="medium">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
           <ion-thumbnail>

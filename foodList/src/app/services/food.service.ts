@@ -9,10 +9,10 @@ import { Storage } from '@capacitor/storage';
   providedIn: 'root'
 })
 export class FoodService implements OnInit {
-
-  favorites:Food[]
+  
+  favorites:Food[] =[]
   favoriteCounter: number = 0
-  arrayNombres: string[] = []
+  arrayNombres:string[] =[]
   constructor(private http: HttpClient) {
     this.getFavFromStorage().then(data => this.favorites = data)
     this.getFavCounterFromStorage().then(data => this.favoriteCounter = data)
@@ -26,22 +26,26 @@ export class FoodService implements OnInit {
   getFavorites(): Observable<Food[]> {
     return of(this.favorites)
   }
-  deleteFavorite(id: number) {
-    this.favorites = this.favorites.filter(data => data.id !== id)
-  }
 
-  deleteFood(id:number){
+
+  async deleteFavorites(id:number):Promise<boolean>{
     this.favorites = this.favorites.filter(data => data.id != id)
-    this.saveFav
+    await this.saveFavIntoStorage();
+    await this.saveFavCounterIntoStorage();
+    return true
   }
 
   async saveFav(favorite: Food): Promise<boolean> {
-    this.arrayNombres = this.favorites.filter(data => data.nombre).map(toString)
-    if (!this.arrayNombres.includes(favorite.nombre)) {
-      favorite.id = this.favoriteCounter++
-      this.favorites.push(favorite);
-
+    var contador:number = 0
+    for (let index = 0; index < this.favorites.length; index++) {
+      if(this.favorites[index].id == favorite.id){
+        contador++
+      }
     }
+      if(contador == 0){
+        this.favorites.push(favorite)
+        favorite.id = this.favoriteCounter++
+      }
     await this.saveFavIntoStorage();
     await this.saveFavCounterIntoStorage();
     return true
