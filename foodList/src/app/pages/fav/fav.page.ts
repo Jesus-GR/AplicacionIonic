@@ -53,16 +53,16 @@ console.log('Confirm Cancel: blah');
     this.foodService.deleteFavorites(id)
   }
   goToFav(){
-    this.router.navigateByUrl("/fav")
+    this.router.navigateByUrl("fav")
   }
   goToUser(){
-    this.router.navigateByUrl("/usuario")
+    this.router.navigateByUrl("usuario")
   }
   goHome(){
-    this.router.navigateByUrl("/home")
+    this.router.navigateByUrl("home")
   }
   goToRegister(){
-    this.router.navigateByUrl("/registro")
+    this.router.navigateByUrl("registro")
   }
 
   async presentAlertConfirm(a:Food) {

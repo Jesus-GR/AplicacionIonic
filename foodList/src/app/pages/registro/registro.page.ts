@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class RegistroPage implements OnInit {
   usuario:Usuario={}
   usuarioId:number = 1
+
   @Input()
   nombre:string
   @Input()
@@ -26,8 +27,13 @@ export class RegistroPage implements OnInit {
               private usuarioService:UsuarioService) { }
 
   ngOnInit() {
+    this.usuarioService.getUsuFromStorage().then(data => this.usuario = data)
+    if(this.usuario != {}){
+      return this.usuario
+    }else{
+      return this.usuario = {}
+    }
   }
-
   saveUsuario(usuario:Usuario){
      usuario.id = this.usuarioId++
      usuario.nombre = this.nombre
@@ -36,8 +42,10 @@ export class RegistroPage implements OnInit {
      usuario.altura = this.altura
      usuario.imc = this.imc
     this.usuarioService.saveUsuario(usuario)
-    this.router.navigateByUrl("/home")
-
+    this.router.navigateByUrl("home")
+  }
+  goHome(){
+    this.router.navigateByUrl("home")
   }
 
 }

@@ -64,13 +64,13 @@ console.log('Confirm Cancel: blah');
   }
 
   goToFav(){
-    this.router.navigateByUrl("/fav")
+    this.router.navigateByUrl("fav")
   }
   goToUser(){
-    this.router.navigateByUrl("/usuario")
+    this.router.navigateByUrl("usuario")
   }
   goToRegister(){
-    this.router.navigateByUrl("/registro")
+    this.router.navigateByUrl("registro")
   }
 
 

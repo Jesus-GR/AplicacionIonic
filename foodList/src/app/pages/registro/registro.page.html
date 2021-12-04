@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <h1>Registro</h1>
+  <h1 *ngIf="usuario.id == null">Registro</h1>
   <div id="contenedor">
-    <ion-list>
+    <ion-list *ngIf="usuario.id == null"> 
       <ion-item>
         <ion-input type="text" [(ngModel)]="nombre" placeholder="Nombre" ></ion-input>
       </ion-item>
@@ -27,8 +27,12 @@
       </ion-item>
     </ion-list>
     
-    <ion-button (click)="saveUsuario(usuario)" expand="block" fill="clear" shape="round">
+    <ion-button (click)="saveUsuario(usuario)" expand="block" fill="clear" shape="round" *ngIf="usuario.id == null">
       !Bienvenido!
+    </ion-button>
+    <ion-label><h1>Bienvenido {{usuario.nombre}}</h1></ion-label>
+    <ion-button (click)="goHome()" expand="block" fill="clear" shape="round" *ngIf="usuario.id != null">
+      Entrar
     </ion-button>
     </div>
 </ion-content>
