@@ -19,6 +19,11 @@ export class UsuarioService implements OnInit {
   /*getUsuarios():Observable<Usuario[]>{
     return of(this.usuarios)
   }*/
+  async deleteUsuario():Promise<boolean>{
+    this.usuario = {}
+    await this.saveUsuIntoStorage();
+    return true
+}
 
  async saveUsuario(usuario: Usuario):Promise<boolean>{
       this.usuario = usuario
@@ -59,6 +64,7 @@ export class UsuarioService implements OnInit {
     return true
   }
 
+  
   
   async getUsuFromStorage(): Promise<Usuario> {
     const retorno = await Storage.get({ key: 'Usuario' });

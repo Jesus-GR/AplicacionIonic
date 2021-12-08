@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>usuario</ion-title>
+    <ion-title class="ion-text-center" style="font-size: 2em;">Usuario
+      <img src="assets/kisspng-apple-color-emoji-apple-color-emoji-computer-icons-5b39e9e6cc8764.9191843415305220868378.png" style="width: 50px;vertical-align: middle;">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -31,17 +33,21 @@
 
     <div id="contenedor">
       <ion-card>
-        <h2> Bienvenido: {{usuario.nombre }}</h2>
+        <h2>Bienvenido {{usuario.nombre }}</h2>
         <img src="https://www.ocu.org/-/media/altroconsumo/images/home/alimentazione/dimagrire/dossier/dieta-dimagrante-main-site-news_800x450.jpg?rev=64d2cd6e-cfb1-4d8c-bb78-98545e05aca8&mw=480&hash=DA4BBE69FE6EC41450227D087A2084B2"/>
         <ion-card-content>
            <p>Aquí podrás realizar un seguimiento de tus progresos</p>
           <ion-card-title>
-              <ion-input (change)="cambiarDatos()" type="text" [(ngModel)]="usuario.edad" >Edad: </ion-input>
+              <ion-input (change)="cambiarDatos()" type="number" [(ngModel)]="usuario.edad" >Edad: </ion-input>
               <ion-input (change)="cambiarDatos()"  type="number"[(ngModel)]="usuario.peso">Peso:</ion-input>
               <ion-input (change)="cambiarDatos()"  type="number" [(ngModel)]="usuario.altura">Altura:</ion-input>
             </ion-card-title>
+            <ion-button (click)="eliminarUsuario()" expand="block" fill="clear" shape="round">
+              Eliminar usuario
+            </ion-button>
         </ion-card-content>
       </ion-card>
+      
     </div>
 
 

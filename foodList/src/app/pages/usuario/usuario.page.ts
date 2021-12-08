@@ -44,5 +44,10 @@ export class UsuarioPage implements OnInit {
   goToRegister(){
     this.router.navigateByUrl("registro")
   }
+  eliminarUsuario(){
+    this.usuarioService.deleteUsuario()
+    this.ngOnInit()
+    this.router.navigateByUrl("registro")
+  }
 
 }
