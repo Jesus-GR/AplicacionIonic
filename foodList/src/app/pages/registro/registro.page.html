@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title style="margin-top: 20px; font-size: 2em;">
-     <img src="assets/kisspng-apple-color-emoji-apple-color-emoji-computer-icons-5b39e9e6cc8764.9191843415305220868378.png" style="width: 50px;vertical-align: middle;">
+     <img src="assets/kisspng-apple-color-emoji-apple-color-emoji-computer-icons-5b39e9e6cc8764.9191843415305220868378.png" style="width: 50px;vertical-align: middle;" color="primary">
      Food List
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content color="primary">
   <h1 *ngIf="usuario.id == null">Registro</h1>
   <div id="contenedor">
     <ion-list *ngIf="usuario.id == null"> 
@@ -27,11 +27,16 @@
       </ion-item>
     </ion-list>
     
-    <ion-button (click)="saveUsuario(usuario)" expand="block" fill="clear" shape="round" *ngIf="usuario.id == null">
+    <ion-button (click)="saveUsuario(usuario)" expand="block" fill="clear" shape="round" *ngIf="usuario.id == null" color="tertiary">
       !Bienvenido!
     </ion-button>
-    <ion-label><h1>Bienvenido {{usuario.nombre}}</h1></ion-label>
-    <ion-button (click)="goHome()" expand="block" fill="clear" shape="round" *ngIf="usuario.id != null">
+
+    <ion-label>
+      <img src="../assets/pngwing.com.png" alt="" *ngIf="usuario.id != null">  
+      <h1>Bienvenido</h1>
+    <h1 color="dark">{{usuario.nombre}}</h1>
+    </ion-label>
+    <ion-button (click)="goHome()" expand="block" fill="clear" shape="round" *ngIf="usuario.id != null" color="tertiary">
       Entrar
     </ion-button>
     </div>

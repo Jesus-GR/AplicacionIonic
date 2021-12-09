@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title class="ion-text-center" style="font-size: 2em;">Usuario
       <img src="assets/kisspng-apple-color-emoji-apple-color-emoji-computer-icons-5b39e9e6cc8764.9191843415305220868378.png" style="width: 50px;vertical-align: middle;">
     </ion-title>
@@ -42,7 +42,7 @@
               <ion-input (change)="cambiarDatos()"  type="number"[(ngModel)]="usuario.peso">Peso:</ion-input>
               <ion-input (change)="cambiarDatos()"  type="number" [(ngModel)]="usuario.altura">Altura:</ion-input>
             </ion-card-title>
-            <ion-button (click)="eliminarUsuario()" expand="block" fill="clear" shape="round">
+            <ion-button (click)="eliminarUsuario()" expand="block" fill="clear" shape="round" color="danger">
               Eliminar usuario
             </ion-button>
         </ion-card-content>
