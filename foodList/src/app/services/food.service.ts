@@ -10,9 +10,8 @@ import { Storage } from '@capacitor/storage';
 })
 export class FoodService implements OnInit {
   
-  favorites:Food[] =[]
+  favorites:Food[] = []
   favoriteCounter: number = 0
-  arrayNombres:string[] =[]
   constructor(private http: HttpClient) {
     this.getFavFromStorage().then(data => this.favorites = data)
     this.getFavCounterFromStorage().then(data => this.favoriteCounter = data)
@@ -36,7 +35,8 @@ export class FoodService implements OnInit {
   }
 
   async saveFav(favorite: Food): Promise<boolean> {
-    var contador:number = 0
+    //this.favorites.push(favorite)
+   var contador:number = 0
     for (let index = 0; index < this.favorites.length; index++) {
       if(this.favorites[index].id == favorite.id){
         contador++
@@ -44,7 +44,6 @@ export class FoodService implements OnInit {
     }
       if(contador == 0){
         this.favorites.push(favorite)
-        favorite.id = this.favoriteCounter++
       }
     await this.saveFavIntoStorage();
     await this.saveFavCounterIntoStorage();

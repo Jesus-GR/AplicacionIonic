@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/usuario/usuario.module').then( m => m.UsuarioPageModule)
   },
   {
-    path: 'usuario/:id',
-    loadChildren: () => import('./pages/usuario/usuario.module').then( m => m.UsuarioPageModule)
-  },
-  {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   }
